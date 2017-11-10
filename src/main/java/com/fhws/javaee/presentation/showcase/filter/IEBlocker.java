@@ -8,9 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebFilter(urlPatterns = {"/*"})
-public class FireFoxBlocker implements Filter {
+public class IEBlocker implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -18,11 +20,19 @@ public class FireFoxBlocker implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        System.out.println("vor filter");
+        //System.out.println("vor filter");
+           
+        String userAgent = ((HttpServletRequest)request).getHeader("User-Agent");
+        
+        if( userAgent.toLowerCase().contains("trident")) {
+            //Internet Explorer - evil!
+            ((HttpServletResponse)response).getWriter().println("IE finden wir doof!");
+            return;
+        }       
         
         chain.doFilter(request, response);
         
-        System.out.println("nach filter");
+        //System.out.println("nach filter");
         
     }
 
