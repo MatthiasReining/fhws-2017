@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fhws.javaee;
+package com.fhws.javaee.presentation.showcase.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;

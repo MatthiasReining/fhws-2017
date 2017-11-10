@@ -1,4 +1,4 @@
-package com.fhws.javaee;
+package com.fhws.javaee.presentation.showcase.servlets;
 
 import java.io.IOException;
 
