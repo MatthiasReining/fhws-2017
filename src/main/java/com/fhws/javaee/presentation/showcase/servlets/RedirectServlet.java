@@ -10,17 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class RedirectServlet
  */
-@WebServlet("/error")
+@WebServlet("/redirect")
 public class RedirectServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-  
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		int calc = 42/0;
-		
-		response.getWriter().append("Hello FHWS");
-		
-	}
 
+    private static final long serialVersionUID = 1L;
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //response.sendRedirect("https://www.google.de");
+        response.sendRedirect("forward");
+    }
+    
 }
