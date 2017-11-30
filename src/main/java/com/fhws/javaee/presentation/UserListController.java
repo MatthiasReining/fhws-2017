@@ -24,6 +24,6 @@ public class UserListController {
     public List<AppUser> getUsers() {
         return users;
     }
-   
+       
 
 }

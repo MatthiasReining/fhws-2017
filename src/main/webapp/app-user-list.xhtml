@@ -18,6 +18,7 @@
                     <th scope="col">#{msg.firstName}</th>
                     <th scope="col">#{msg.lastName}</th>
                     <th scope="col">#{msg.userName}</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +28,12 @@
                         <td> <h:outputText value="#{user.email}"/> </td>
                         <td> <h:outputText value="#{user.firstName}"/> </td>
                         <td> <h:outputText value="#{user.lastName}"/> </td>
+                        <td>
+                            <h:form>
+                                <h:commandLink
+                                    action="#{userController.load(user)}" value="edit"/>
+                            </h:form> 
+                        </td>
                     </tr>
                 </ui:repeat>
             </tbody>
