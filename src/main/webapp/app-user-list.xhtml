@@ -1,36 +1,37 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 template="./WEB-INF/template.xhtml">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
 
-    <h:head>
-        <title>List</title>
-    </h:head>
-    
-    <h:body>
-    
-        <f:view>
-            
-            <h1>List</h1>
-            angemeldet als #{loginController.user.email}
-            
-            <h:dataTable var="user" value="#{userListController.users}">
-                <h:column>
-                    <h:outputText value="#{user.email}"/>
-                </h:column>
-                
-                <h:column>
-                    <h:outputText value="#{user.firstName}"/>
-                </h:column>
-                
-                 <h:column>
-                     <h:outputText value="#{user.lastName}"/>
-                </h:column>
-            </h:dataTable>
-        </f:view>
-    </h:body>
-    
-</html>
+        <br/><br/><br/><br/>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Username</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ui:repeat var="user" value="#{userListController.users}" varStatus="idx">
+                    <tr>
+                        <th> #{idx.index +1}</th>
+                        <td> <h:outputText value="#{user.email}"/> </td>
+                        <td> <h:outputText value="#{user.firstName}"/> </td>
+                        <td> <h:outputText value="#{user.lastName}"/> </td>
+                    </tr>
+                </ui:repeat>
+            </tbody>
+        </table>
+
+       
+    </ui:define>
+
+</ui:composition>
