@@ -8,15 +8,16 @@
 
     <ui:define name="content">
 
+
         <br/><br/><br/><br/>
 
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Username</th>
+                    <th scope="col">#{msg.firstName}</th>
+                    <th scope="col">#{msg.lastName}</th>
+                    <th scope="col">#{msg.userName}</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,7 +32,6 @@
             </tbody>
         </table>
 
-       
     </ui:define>
 
 </ui:composition>

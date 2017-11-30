@@ -55,23 +55,23 @@
             <div class="container">
 
                 <h:form class="form-signin">
-                    <h2 class="form-signin-heading">Please sign in</h2>
-                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <h2 class="form-signin-heading">#{msg.signInMsg}</h2>
+                    <label for="inputEmail" class="sr-only">#{msg.emailAddress}</label>
                     <h:inputText 
                         class="form-control"
                         pt:placeholder="E-Mail address"
                         id="email" 
                         value="#{loginController.user.email}"/>
-                    <label for="inputPassword" class="sr-only">Password</label>
+                    <label for="inputPassword" class="sr-only">#{msg.emailAddress}</label>
                     <h:inputSecret 
                         class="form-control"
-                        pt:placeholder="Password"
+                        pt:placeholder="#{msg.password}"
                         id="password" 
                         value="#{loginController.user.password}"/>
 
                     <h:commandButton 
                         class="btn btn-lg btn-primary btn-block"
-                        action="#{loginController.login}" value="Sign in"/>
+                        action="#{loginController.login}" value="#{msg.signIn}"/>
 
                 </h:form>
 

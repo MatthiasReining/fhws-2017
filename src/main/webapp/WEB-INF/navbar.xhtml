@@ -7,11 +7,21 @@
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">FHWS App</a>
-       
+
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto"></ul>
 
-            <span class="navbar-text">
+            <h:form class="form-inline my-2 my-lg-0">
+                
+                 <h:commandButton 
+                        class="btn btn-outline-success my-2 my-sm-0"
+                        action="#{localeController.changeLanguage('de')}" value="DE"/>
+                 <h:commandButton 
+                        class="btn btn-outline-success my-2 my-sm-0"
+                        action="#{localeController.changeLanguage('en')}" value="EN"/>
+                 
+            </h:form>
+            <span class="navbar-text" style="padding-left: 20px">
                 angemeldet als #{loginController.user.email}
             </span>
         </div>
