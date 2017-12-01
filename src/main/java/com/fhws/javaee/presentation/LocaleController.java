@@ -12,7 +12,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class LocaleController {
 
-    private String lang;
+    private String lang = "de";
 
     public void changeLanguage(String lang) {
         System.out.println("new lang " + lang);
