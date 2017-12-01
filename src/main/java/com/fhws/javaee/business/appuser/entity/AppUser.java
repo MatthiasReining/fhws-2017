@@ -1,13 +1,18 @@
 package com.fhws.javaee.business.appuser.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.validation.constraints.Size;
 
@@ -35,7 +40,19 @@ public class AppUser implements Serializable {
     
     private Integer loginFailed;
    
+    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER) 
+    private List<ChangeLog> changeLogs = new ArrayList<>();
 
+    public List<ChangeLog> getChangeLogs() {
+        return changeLogs;
+    }
+
+    public void setChangeLogs(List<ChangeLog> changeLogs) {
+        this.changeLogs = changeLogs;
+    }
+
+    
+    
     public String getEmail() {
         return email;
     }

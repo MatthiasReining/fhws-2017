@@ -10,43 +10,48 @@ import com.fhws.javaee.business.appuser.entity.AppUser;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 
-
 @ManagedBean
 @SessionScoped
 public class UserController {
-    
-    
+
+    @ManagedProperty(value = "#{loginController}")
+    private LoginController loginController;
+
     @PersistenceContext
     EntityManager em;
     @Resource
     UserTransaction ut;
 
     AppUserService aus;
-    
+
     @PostConstruct
     void init() {
         aus = new AppUserService(em, ut);
     }
-    
+
     private AppUser appUser;
-    
+
     public String load(AppUser appUser) {
         System.out.println("app User: " + appUser.getFirstName());
-        this.appUser = appUser;        
+        this.appUser = appUser;
         return "app-user?faces-redirect=true";
     }
 
     public String save() {
-        aus.save(appUser);
-       
+        String currentUserName = "-";
+        if (loginController != null)
+            currentUserName = loginController.getUser().getEmail();
+        aus.save(appUser, currentUserName);
+
         return "";
     }
-    
+
     public AppUser getAppUser() {
         return appUser;
     }
@@ -54,7 +59,11 @@ public class UserController {
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
     }
-    
-    
-    
+
+    public void setLoginController(LoginController loginController) {
+        this.loginController = loginController;
+    }
+
+   
+
 }

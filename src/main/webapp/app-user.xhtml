@@ -54,6 +54,26 @@
             </div>
         </h:form>
 
+        
+        <hr/>
+        <h2>Change Log</h2>
+        
+         <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">User</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ui:repeat var="changeLog" value="#{userController.appUser.changeLogs}" >
+                    <tr>
+                        <td> <h:outputText value="#{changeLog.username}"/> </td>
+                        <td> <h:outputText value="#{changeLog.ts}"/> </td>
+                    </tr>
+                </ui:repeat>
+            </tbody>
+        </table>
 
 
     </ui:define>

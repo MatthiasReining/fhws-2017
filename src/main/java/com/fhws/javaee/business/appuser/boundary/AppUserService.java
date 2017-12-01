@@ -6,6 +6,7 @@
 package com.fhws.javaee.business.appuser.boundary;
 
 import com.fhws.javaee.business.appuser.entity.AppUser;
+import com.fhws.javaee.business.appuser.entity.ChangeLog;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,12 +29,18 @@ public class AppUserService {
         this.ut = ut;
     }
 
-    public AppUser save(AppUser appUser) {
+    public AppUser save(AppUser appUser, String currentUser) {
         try {
             ut.begin();
 
             appUser = em.merge(appUser);
             //appUser is now managed
+            
+            ChangeLog cl = new ChangeLog();
+            cl.setAppUser(appUser);
+            cl.setUsername(currentUser);
+            
+            appUser.getChangeLogs().add(cl);
             
             ut.commit();
             
