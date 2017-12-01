@@ -14,12 +14,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @NamedQueries({
     @NamedQuery(name = AppUser.FIND_ALL, query = "SELECT au FROM AppUser au"),
     @NamedQuery(name = AppUser.FIND_BY_USERNAME, query="SELECT au FROM AppUser au WHERE au.email = :" + AppUser.PARAM_USERNAME)    
 })
+@XmlRootElement
 public class AppUser implements Serializable {
     
     public static final String FIND_ALL = "AppUser.findAll";

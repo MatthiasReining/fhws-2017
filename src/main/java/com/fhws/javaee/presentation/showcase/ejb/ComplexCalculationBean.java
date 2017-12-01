@@ -2,9 +2,11 @@ package com.fhws.javaee.presentation.showcase.ejb;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.jws.WebService;
 
 @Stateless
 @Remote(ComplexCalculationBeanRemote.class)
+@WebService
 public class ComplexCalculationBean implements ComplexCalculationBeanRemote, ComplexCalculationBeanLocal {
 
     @Override

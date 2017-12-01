@@ -8,25 +8,27 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
+import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 public class ChangeLog implements Serializable {
-    
+
     @Id
     @GeneratedValue
     private long id;
-    
+
     @ManyToOne
+    @XmlTransient
     private AppUser appUser;
-    
+
     private String username;
-    
+
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date ts;
-    
+
     @PrePersist
     public void preSave() {
-        ts = new Date();        
+        ts = new Date();
     }
 
     public long getId() {
@@ -37,6 +39,7 @@ public class ChangeLog implements Serializable {
         this.id = id;
     }
 
+    @XmlTransient
     public AppUser getAppUser() {
         return appUser;
     }
@@ -60,8 +63,5 @@ public class ChangeLog implements Serializable {
     public void setTs(Date ts) {
         this.ts = ts;
     }
-    
-    
-    
-    
+
 }
