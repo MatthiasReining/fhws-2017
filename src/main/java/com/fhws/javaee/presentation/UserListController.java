@@ -1,29 +1,33 @@
 package com.fhws.javaee.presentation;
 
+import com.fhws.javaee.business.appuser.boundary.AppUserService;
+import com.fhws.javaee.business.appuser.entity.AppUser;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 
 @ManagedBean
 public class UserListController {
 
-    List<AppUser> users;
-        
-    @PostConstruct
-    public void init() {
-        users = new ArrayList<>();
-        
-        users.add(new AppUser("mickey.mouse@disney.com", "topsecret", "Mickey", "Mouse"));
-        users.add(new AppUser("mini.mouse@disney.com", "topsecret", "Mini", "Mouse"));
-        users.add(new AppUser("donald.duck@disney.com", "topsecret", "Donald", "Duck"));
-        users.add(new AppUser("daisy.duck@disney.com", "topsecret", "Daisy", "Duck"));       
-        
-    }
+    @PersistenceContext
+    EntityManager em;
+    @Resource
+    UserTransaction ut;
 
-    public List<AppUser> getUsers() {
-        return users;
+    AppUserService aus;
+    
+    @PostConstruct
+    void init() {
+        aus = new AppUserService(em, ut);
     }
-       
+  
+    public List<AppUser> getUsers() {
+        return aus.getAll();
+    }
 
 }

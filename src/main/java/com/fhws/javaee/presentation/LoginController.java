@@ -1,5 +1,6 @@
 package com.fhws.javaee.presentation;
 
+import com.fhws.javaee.business.appuser.entity.AppUser;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

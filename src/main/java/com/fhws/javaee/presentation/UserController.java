@@ -5,28 +5,45 @@
  */
 package com.fhws.javaee.presentation;
 
+import com.fhws.javaee.business.appuser.boundary.AppUserService;
+import com.fhws.javaee.business.appuser.entity.AppUser;
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 
 
 @ManagedBean
 @SessionScoped
 public class UserController {
     
+    
+    @PersistenceContext
+    EntityManager em;
+    @Resource
+    UserTransaction ut;
+
+    AppUserService aus;
+    
+    @PostConstruct
+    void init() {
+        aus = new AppUserService(em, ut);
+    }
+    
     private AppUser appUser;
     
     public String load(AppUser appUser) {
         System.out.println("app User: " + appUser.getFirstName());
-        
-        this.appUser = appUser;
-        
+        this.appUser = appUser;        
         return "app-user?faces-redirect=true";
     }
 
     public String save() {
-        System.out.println("save");
-        System.out.println(this.appUser);
-        
+        aus.save(appUser);
+       
         return "";
     }
     

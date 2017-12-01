@@ -6,6 +6,7 @@
 package com.fhws.javaee.presentation.showcase.db;
 
 import com.fhws.javaee.business.log.entity.JPALog;
+import com.fhws.javaee.business.appuser.entity.AppUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -53,10 +54,10 @@ public class JPAServlet extends HttpServlet {
         } else if ("find".equalsIgnoreCase(action)) {
 
             Long id = Long.parseLong(req.getParameter("id"));
-            JPALog log  = em.find(JPALog.class, id);
-            
-             writer.println(log);
-            
+            JPALog log = em.find(JPALog.class, id);
+
+            writer.println(log);
+
         } else if ("create".equalsIgnoreCase(action)) {
             JPALog log = new JPALog();
             log.setInsertTime(new Date());
