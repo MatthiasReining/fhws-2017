@@ -46,7 +46,7 @@ public class UserController {
     public String save() {
         String currentUserName = "-";
         if (loginController != null)
-            currentUserName = loginController.getUser().getEmail();
+            currentUserName = loginController.getCurrentUser().getEmail();
         aus.save(appUser, currentUserName);
 
         return "";

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,11 +17,14 @@ import javax.validation.constraints.Size;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = AppUser.FIND_ALL, query = "SELECT au FROM AppUser au")
+    @NamedQuery(name = AppUser.FIND_ALL, query = "SELECT au FROM AppUser au"),
+    @NamedQuery(name = AppUser.FIND_BY_USERNAME, query="SELECT au FROM AppUser au WHERE au.email = :" + AppUser.PARAM_USERNAME)    
 })
 public class AppUser implements Serializable {
     
     public static final String FIND_ALL = "AppUser.findAll";
+    public static final String FIND_BY_USERNAME = "AppUser.findByUserName";
+    public static final String PARAM_USERNAME = "paramUserName";
     
     @Id
     @GeneratedValue

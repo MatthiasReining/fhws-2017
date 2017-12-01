@@ -61,13 +61,13 @@
                         class="form-control"
                         pt:placeholder="E-Mail address"
                         id="email" 
-                        value="#{loginController.user.email}"/>
+                        value="#{loginController.email}"/>
                     <label for="inputPassword" class="sr-only">#{msg.emailAddress}</label>
                     <h:inputSecret 
                         class="form-control"
                         pt:placeholder="#{msg.password}"
                         id="password" 
-                        value="#{loginController.user.password}"/>
+                        value="#{loginController.password}"/>
 
                     <h:commandButton 
                         class="btn btn-lg btn-primary btn-block"

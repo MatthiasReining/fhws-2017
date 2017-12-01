@@ -1,5 +1,5 @@
-insert into APPUSER(id, email, password, firstName, lastName) values(hibernate_sequence.nextval, 'mickey.mouse@disney.com', 'topsecret', 'Mickey', 'Mouse');
-insert into APPUSER(id, email, password, firstName, lastName) values(hibernate_sequence.nextval, 'mini.mouse@disney.com', 'topsecret', 'Mini', 'Mouse');
-insert into APPUSER(id, email, password, firstName, lastName) values(hibernate_sequence.nextval, 'donald.duck@disney.com', 'topsecret', 'Donald', 'Duck');
-insert into APPUSER(id, email, password, firstName, lastName) values(hibernate_sequence.nextval, 'dagobert.duck@disney.com', 'topsecret', 'Dagobert', 'Duck');
+insert into APPUSER(id, email, password, firstName, lastName) values(hibernate_sequence.nextval, 'mickey.mouse@disney.com',  '1000:447ae50eba2212644ad9c8e71bad9b4a:3ad23a13f56fe8444e7ca970f3b766efe0c4612bbfb32c695c0d8b788c6fc980b5cd1f02b42785fccbb050e1b23822b0a821069487f2128452640ab31d161952', 'Mickey', 'Mouse');
+insert into APPUSER(id, email, password, firstName, lastName) values(hibernate_sequence.nextval, 'mini.mouse@disney.com',    '1000:2239a6cdb30994cfa9b684befa5df1f5:d3c9fc62334d4df129c42acd02c707a61b4fba9279957c5724e1cbfa081ab535fe86a178c31acb8718c8b4269f85c44600741393f3c31691e3726e7c5f4c5325', 'Mini', 'Mouse');
+insert into APPUSER(id, email, password, firstName, lastName) values(hibernate_sequence.nextval, 'donald.duck@disney.com',   '1000:97b74fd2760ba57aab612205c95412fd:f6bf9f0fae2a255b819874f2f877f829e89460b1adce9a9f3b6d5edb14e9747ded2c11c691a17af819aa0c8853149885184f73efea6de45248ea53c19bc515f2', 'Donald', 'Duck');
+insert into APPUSER(id, email, password, firstName, lastName) values(hibernate_sequence.nextval, 'dagobert.duck@disney.com', '1000:89b86bef61b42ae723ca7221a9bf154f:7140e8dc6abb4c779a5f287ad2e7794aac4e07eee4497744aca4866be1cd55a98381558c40052563c94db681258bab0560b12d31a2847b6528ca4ef0a5dd6982', 'Dagobert', 'Duck');
 
