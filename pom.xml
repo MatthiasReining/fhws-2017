@@ -36,6 +36,14 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>org.wildfly</groupId>
+            <artifactId>wildfly-ejb-client-bom</artifactId>
+            <type>pom</type>
+            <version>10.1.0.Final</version>
+            <scope>test</scope>
+        </dependency>
                
     </dependencies>
     <build>
