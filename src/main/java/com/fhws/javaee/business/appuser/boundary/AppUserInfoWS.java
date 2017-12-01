@@ -6,21 +6,18 @@
 package com.fhws.javaee.business.appuser.boundary;
 
 import com.fhws.javaee.business.appuser.entity.AppUser;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 @WebService
 @Stateless
 public class AppUserInfoWS {
 
-    @PersistenceContext
-    EntityManager em;
+    @EJB
+    AppUserService aus;
 
-    public AppUser getById(long id) {
-        AppUserService aus = new AppUserService(em, null);
-
+    public AppUser getById(long id) {       
         return aus.findById(id);
     }
 }

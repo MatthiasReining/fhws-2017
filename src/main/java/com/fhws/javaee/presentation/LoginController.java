@@ -4,6 +4,7 @@ import com.fhws.javaee.business.appuser.boundary.AppUserService;
 import com.fhws.javaee.business.appuser.entity.AppUser;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
@@ -14,10 +15,8 @@ import javax.transaction.UserTransaction;
 @SessionScoped
 public class LoginController {
 
-    @PersistenceContext
-    EntityManager em;
-    @Resource
-    UserTransaction ut;
+    @EJB
+    AppUserService aus;
 
     private AppUser currentUser;
 
@@ -28,8 +27,6 @@ public class LoginController {
         System.out.println("in login");
 
         System.out.println("login " + email + "/" + password);
-
-        AppUserService aus = new AppUserService(em, ut);
 
         currentUser = aus.checkLogin(email, password);
         if (currentUser != null) {

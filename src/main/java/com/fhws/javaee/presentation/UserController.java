@@ -9,6 +9,7 @@ import com.fhws.javaee.business.appuser.boundary.AppUserService;
 import com.fhws.javaee.business.appuser.entity.AppUser;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -23,17 +24,8 @@ public class UserController {
     @ManagedProperty(value = "#{loginController}")
     private LoginController loginController;
 
-    @PersistenceContext
-    EntityManager em;
-    @Resource
-    UserTransaction ut;
-
+    @EJB
     AppUserService aus;
-
-    @PostConstruct
-    void init() {
-        aus = new AppUserService(em, ut);
-    }
 
     private AppUser appUser;
 
@@ -45,8 +37,9 @@ public class UserController {
 
     public String save() {
         String currentUserName = "-";
-        if (loginController != null)
+        if (loginController != null) {
             currentUserName = loginController.getCurrentUser().getEmail();
+        }
         aus.save(appUser, currentUserName);
 
         return "";
@@ -63,7 +56,5 @@ public class UserController {
     public void setLoginController(LoginController loginController) {
         this.loginController = loginController;
     }
-
-   
 
 }
