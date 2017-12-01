@@ -31,7 +31,6 @@ public class IEBlocker implements Filter {
         }       
         
         chain.doFilter(request, response);
-        
         //System.out.println("nach filter");
         
     }

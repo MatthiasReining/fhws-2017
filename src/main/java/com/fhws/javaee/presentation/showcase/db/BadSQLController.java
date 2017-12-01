@@ -7,11 +7,9 @@ package com.fhws.javaee.presentation.showcase.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.sql.DataSource;
-import javax.transaction.NotSupportedException;
 import javax.transaction.UserTransaction;
 
 @ManagedBean

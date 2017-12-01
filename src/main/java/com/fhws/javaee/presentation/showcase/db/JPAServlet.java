@@ -7,7 +7,9 @@ package com.fhws.javaee.presentation.showcase.db;
 
 import com.fhws.javaee.business.log.entity.JPALog;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
@@ -35,17 +37,41 @@ public class JPAServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        JPALog log = new JPALog();
-        log.setInsertTime(new Date());
-        log.setMessage("Hallo hallo");
 
-        try {
-            ut.begin();
-            em.persist(log);
-            ut.commit();
-        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
-            Logger.getLogger(JPAServlet.class.getName()).log(Level.SEVERE, null, ex);
+        PrintWriter writer = resp.getWriter();
+
+        String action = req.getParameter("action");
+        if (action == null) {
+            action = "read";
+        }
+
+        if ("read".equalsIgnoreCase(action)) {
+            List<JPALog> list = em.createNamedQuery(JPALog.FIND_ALL, JPALog.class).getResultList();
+            for (JPALog log : list) {
+                writer.println(log);
+            }
+        } else if ("find".equalsIgnoreCase(action)) {
+
+            Long id = Long.parseLong(req.getParameter("id"));
+            JPALog log  = em.find(JPALog.class, id);
+            
+             writer.println(log);
+            
+        } else if ("create".equalsIgnoreCase(action)) {
+            JPALog log = new JPALog();
+            log.setInsertTime(new Date());
+            log.setMessage("Hallo hallo");
+            try {
+                ut.begin();
+                em.persist(log);
+                ut.commit();
+            } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+                Logger.getLogger(JPAServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            writer.println("Action " + action + " is unknown!");
         }
 
     }
+
 }

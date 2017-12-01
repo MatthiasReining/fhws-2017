@@ -5,13 +5,23 @@
  */
 package com.fhws.javaee.business.log.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
-public class JPALog {
+@NamedQueries({
+    @NamedQuery(name = JPALog.FIND_ALL, query = "SELECT l FROM JPALog l")
+})
+@Table(name = "JPA_LOG")
+public class JPALog implements Serializable {
+    
+    public final static String FIND_ALL = "JPALog.findAll";
 
     @Id
     @GeneratedValue
@@ -52,5 +62,12 @@ public class JPALog {
     public void setId(long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "JPALog{" + "id=" + id + ", insertTime=" + insertTime + ", data1=" + data1 + ", message=" + message + '}';
+    }
+    
+    
 
 }
