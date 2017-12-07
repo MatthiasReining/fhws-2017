@@ -10,22 +10,23 @@ import javax.persistence.PersistenceContext;
 
 @Stateless
 public class EJBTest1 {
-    
+
     @PersistenceContext
     EntityManager em;
-    
+
     @EJB
     EJBTest2 ejb2;
-    
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
+
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public JPALog m1() {
         JPALog log = new JPALog();
         log.setData1("in EJBTest1#m1");
-        
+
         ejb2.m2();
-        
-        System.out.println(42/0);
-        
-        return em.merge(log);        
+
+        System.out.println(42 / 0);
+
+        return em.merge(log);
     }
+
 }
