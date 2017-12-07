@@ -7,18 +7,15 @@ package com.fhws.javaee.presentation;
 
 import com.fhws.javaee.business.appuser.boundary.AppUserService;
 import com.fhws.javaee.business.appuser.entity.AppUser;
+import com.fhws.javaee.business.performance.boundary.KeeperOfTime;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
 @SessionScoped
 public class UserController implements Serializable {
-
-    @Inject
-    private LoginController loginController;
 
     @EJB
     AppUserService aus;
@@ -31,12 +28,9 @@ public class UserController implements Serializable {
         return "app-user?faces-redirect=true";
     }
 
+    @KeeperOfTime
     public String save() {
-        String currentUserName = "-";
-        if (loginController != null) {
-            currentUserName = loginController.getCurrentUser().getEmail();
-        }
-        aus.save(appUser, currentUserName);
+        aus.save(appUser);
 
         return "";
     }
@@ -49,8 +43,4 @@ public class UserController implements Serializable {
         this.appUser = appUser;
     }
 
-    public void setLoginController(LoginController loginController) {
-        this.loginController = loginController;
-    }
-
-}
+ }

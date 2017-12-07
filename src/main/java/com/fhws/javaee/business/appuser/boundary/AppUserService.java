@@ -8,29 +8,25 @@ package com.fhws.javaee.business.appuser.boundary;
 import com.fhws.javaee.business.appuser.controller.PasswordManager;
 import com.fhws.javaee.business.appuser.entity.AppUser;
 import com.fhws.javaee.business.appuser.entity.ChangeLog;
+import com.fhws.javaee.business.performance.boundary.KeeperOfTime;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.RollbackException;
-import javax.transaction.SystemException;
-import javax.transaction.UserTransaction;
 
 @Stateless
 public class AppUserService {
 
     @PersistenceContext
     EntityManager em;
+    
+    @Inject @CurrentUser
+    AppUser currentUser;
 
+    @KeeperOfTime
     public AppUser checkLogin(String username, String password) {
         try {
             AppUser user = em.createNamedQuery(AppUser.FIND_BY_USERNAME, AppUser.class)
@@ -56,13 +52,13 @@ public class AppUserService {
         }
     }
 
-    public AppUser save(AppUser appUser, String currentUser) {
+    public AppUser save(AppUser appUser) {
         appUser = em.merge(appUser);
         //appUser is now managed
 
         ChangeLog cl = new ChangeLog();
         cl.setAppUser(appUser);
-        cl.setUsername(currentUser);
+        cl.setUsername(currentUser.getEmail());
 
         appUser.getChangeLogs().add(cl);
         return appUser;

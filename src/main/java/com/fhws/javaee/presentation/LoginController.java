@@ -1,17 +1,20 @@
 package com.fhws.javaee.presentation;
 
 import com.fhws.javaee.business.appuser.boundary.AppUserService;
+import com.fhws.javaee.business.appuser.boundary.CurrentUser;
 import com.fhws.javaee.business.appuser.entity.AppUser;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 @Named
 @SessionScoped
 public class LoginController implements Serializable {
 
-    @EJB
+    @Inject
     AppUserService aus;
 
     private AppUser currentUser;
@@ -31,7 +34,9 @@ public class LoginController implements Serializable {
 
         return "login";
     }
+    
 
+    @Produces @CurrentUser @Named
     public AppUser getCurrentUser() {
         return currentUser;
     }
