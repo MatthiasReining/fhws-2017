@@ -12,7 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 @Entity
 @NamedQueries({
@@ -20,16 +22,22 @@ import javax.persistence.Table;
 })
 @Table(name = "JPA_LOG")
 public class JPALog implements Serializable {
-    
+
     public final static String FIND_ALL = "JPALog.findAll";
 
     @Id
     @GeneratedValue
     private long id;
 
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date insertTime;
     private String data1;
     private String message;
+
+    @PrePersist
+    public void preSave() {
+        insertTime = new Date();
+    }
 
     public Date getInsertTime() {
         return insertTime;
@@ -67,7 +75,5 @@ public class JPALog implements Serializable {
     public String toString() {
         return "JPALog{" + "id=" + id + ", insertTime=" + insertTime + ", data1=" + data1 + ", message=" + message + '}';
     }
-    
-    
 
 }
