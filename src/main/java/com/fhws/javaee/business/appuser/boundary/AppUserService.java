@@ -8,10 +8,12 @@ package com.fhws.javaee.business.appuser.boundary;
 import com.fhws.javaee.business.appuser.controller.PasswordManager;
 import com.fhws.javaee.business.appuser.entity.AppUser;
 import com.fhws.javaee.business.appuser.entity.ChangeLog;
+import com.fhws.javaee.business.news.boundary.NewsLogin;
 import com.fhws.javaee.business.performance.boundary.KeeperOfTime;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -25,6 +27,9 @@ public class AppUserService {
     
     @Inject @CurrentUser
     AppUser currentUser;
+    
+    @Inject @NewsLogin
+    Event<String> newsEvent;
 
     @KeeperOfTime
     public AppUser checkLogin(String username, String password) {
@@ -37,6 +42,9 @@ public class AppUserService {
             if (PasswordManager.validatePassword(password, dbPassword)) {
                 user.setLastLogin(new Date());
                 user.setLoginFailed(0);
+                
+                newsEvent.fire("User " + user.getFirstName() + " " + user.getLastName() + " is logged in!");
+                
             } else {
                 Integer loginFailed = user.getLoginFailed();
                 if (loginFailed == null) {
