@@ -5,12 +5,13 @@
  */
 package com.fhws.javaee.presentation;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
-@ManagedBean
+@Named
 @SessionScoped
-public class LocaleController {
+public class LocaleController implements Serializable {
 
     private String lang = "de";
 

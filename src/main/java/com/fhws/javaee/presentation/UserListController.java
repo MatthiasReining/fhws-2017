@@ -4,9 +4,11 @@ import com.fhws.javaee.business.appuser.boundary.AppUserService;
 import com.fhws.javaee.business.appuser.entity.AppUser;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
-@ManagedBean
+@Named
+@RequestScoped
 public class UserListController {
 
     @EJB

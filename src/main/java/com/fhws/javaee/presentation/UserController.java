@@ -7,21 +7,17 @@ package com.fhws.javaee.presentation;
 
 import com.fhws.javaee.business.appuser.boundary.AppUserService;
 import com.fhws.javaee.business.appuser.entity.AppUser;
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
-@ManagedBean
+@Named
 @SessionScoped
-public class UserController {
+public class UserController implements Serializable {
 
-    @ManagedProperty(value = "#{loginController}")
+    @Inject
     private LoginController loginController;
 
     @EJB
