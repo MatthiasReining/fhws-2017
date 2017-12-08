@@ -1,7 +1,5 @@
 package com.fhws.javaee.presentation.showcase.listener;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionAttributeListener;
@@ -29,7 +27,7 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
 
     @Override
     public void attributeAdded(HttpSessionBindingEvent event) {
-        System.out.println("attribute added" + event.getName() + "(" + event.getValue() + ")");
+        //System.out.println("attribute added" + event.getName() + "(" + event.getValue() + ")");
     }
 
     @Override

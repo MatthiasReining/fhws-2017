@@ -5,12 +5,16 @@
  */
 package com.fhws.javaee.business.news.boundary;
 
+import com.fhws.javaee.business.appuser.boundary.CurrentUser;
+import com.fhws.javaee.business.appuser.entity.AppUser;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import javax.ejb.Singleton;
 import javax.enterprise.event.Observes;
+import javax.enterprise.inject.Instance;
+import javax.inject.Inject;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
@@ -23,6 +27,7 @@ public class NewsChat {
 
     private final Set<Session> clients = Collections.synchronizedSet(new HashSet<>());
 
+  
     @OnMessage
     public void incomingMsg(String message, Session session) throws IOException {
         String sendMessage = "Sender: " + session.getId() + " -> " + message;

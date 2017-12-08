@@ -39,6 +39,30 @@
             </tbody>
         </table>
 
+
+        <h3>CHAT</h3>
+
+        <div id="chatBox"></div>
+        <input type="text" id="chatmsg"/>
+        <button onclick="sendMsg()">send</button>
+        <script>
+            let webSocket = new WebSocket("ws://localhost:8080/fhws/chat");
+
+            function sendMsg() {
+                let chatMsg = document.querySelector('#chatmsg').value;
+                console.log(chatMsg);
+                webSocket.send(chatMsg);
+                document.querySelector('#chatmsg').value = '';
+                document.querySelector('#chatmsg').focus();
+            }
+
+            webSocket.onmessage = function (event) {
+                console.log(event);
+                document.querySelector('#chatBox').innerHTML += '<br/>' + event.data;
+                document.querySelector('#chatmsg').scrollIntoView();
+            }
+
+        </script>
     </ui:define>
 
 </ui:composition>
