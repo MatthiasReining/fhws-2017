@@ -11,7 +11,7 @@ import javax.enterprise.context.SessionScoped;
 @SessionScoped
 public class Payload implements Serializable {
 
-    private String data;
+    private String data; 
 
     public String getData() {
         return data;
