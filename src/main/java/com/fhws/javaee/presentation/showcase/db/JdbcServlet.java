@@ -24,7 +24,7 @@ import javax.sql.DataSource;
 @WebServlet("jdbc")
 public class JdbcServlet extends HttpServlet {
     
-    @Resource(lookup = "java:jboss/datasources/FHWS-DS")
+    @Resource(lookup = "java:jboss/datasources/ExampleDS")
     DataSource dataSource;
     
     @Override

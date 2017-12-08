@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 @WebServlet("orm")
 public class ORMServlet extends HttpServlet {
     
-    @Resource(lookup = "java:jboss/datasources/FHWS-DS")
+    @Resource(lookup = "java:jboss/datasources/ExampleDS")
     DataSource dataSource;
     
     @Override

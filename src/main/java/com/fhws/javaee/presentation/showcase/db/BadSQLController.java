@@ -15,7 +15,7 @@ import javax.transaction.UserTransaction;
 @ManagedBean
 public class BadSQLController {
     
-    @Resource(lookup = "java:jboss/datasources/FHWS-DS")
+    @Resource(lookup = "java:jboss/datasources/ExampleDS")
     DataSource datasource;
     
     @Resource
